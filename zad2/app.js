@@ -8,13 +8,10 @@ const bookRoutes = require('./routes/book');
 
 const app = express();
 
-// Настройка каталога статических файлов
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Настройка движка представлений
 app.set('view engine', 'ejs');
 
-// Настройка сессии
 app.use(
     session({
         secret: "secret",
@@ -23,10 +20,8 @@ app.use(
     })
 );
 
-// Добавление промежуточного ПО bodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Добавление маршрутизации
 app.use('/user', userRoutes);
 app.use('/books', bookRoutes);
 app.use('*', errorRoutes);
